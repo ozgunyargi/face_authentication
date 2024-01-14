@@ -98,7 +98,7 @@ class Frame:
         """
         return self.img.crop((self.face_x1, self.face_y1, self.face_x2, self.face_y2))
 
-    def visualize(self, save_path: Optional[str]=None):
+    def visualize(self, border_color: str = "red", save_path: Optional[str]=None, return_image: bool = False):
         """
         Visualizes the face bounding box on the image and saves it to the given path if provided.
 
@@ -111,7 +111,10 @@ class Frame:
         draw = ImageDraw.Draw(img_to_draw)
 
         if self.face_x1:
-            draw.rectangle(((self.face_x1, self.face_y1), (self.face_x2, self.face_y2)), outline="red", width=3)     
+            draw.rectangle(((self.face_x1, self.face_y1), (self.face_x2, self.face_y2)), outline=border_color, width=3)     
         if save_path:
             img_to_draw.save(save_path)
-        img_to_draw.show()
+        if return_image:
+            return img_to_draw
+        else:
+            img_to_draw.show()
