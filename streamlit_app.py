@@ -81,7 +81,7 @@ def authenticate():
         screen_img = model.detect(img, return_frame=True)
         face_img = model.detect(img)
         user_embedding = extract_embeddings(face_img)
-        is_auth, _, _ = ad.authorize_user(room_name='FASSG042', new_embedding=user_embedding)
+        is_auth, _, _ = ad.authorize_user(room_name=classroom, new_embedding=user_embedding)
         if is_auth:
             border_color = "green"
         else:
