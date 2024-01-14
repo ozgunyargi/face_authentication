@@ -14,5 +14,18 @@ class InceptionModel(BaseEmbeddingModel):
         ])
 
     def get_embedding(self, image):
+        """
+        Retrieves the embedding of a given PIL Image.
+
+        Parameters
+        ----------
+        image: PIL.Image.Image
+            The input image for which the embedding is to be obtained.
+
+        Returns
+        -------
+        torch.Tensor
+            The embedding of the input image.
+        """
         image = self.transform(image).unsqueeze(0).to(self.device)
         return self.facenet(image)
