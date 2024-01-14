@@ -1,0 +1,5 @@
+# Image
+pillow == 10.2.0
+
+# Face Detection
+facenet-pytorch == 2.5.3
