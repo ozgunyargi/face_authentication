@@ -3,3 +3,9 @@ pillow == 10.2.0
 
 # Face Detection
 facenet-pytorch == 2.5.3
+
+# Streamlit
+streamlit == 1.30.0
+
+# Camera Configuration
+opencv-python == 4.9.0.80
