@@ -133,11 +133,13 @@ def authenticate():
                 user_embedding = extract_embeddings(face_img)
             
             if user_embedding is not None and not authentication_done:
-                is_auth, _, _ = ad.authorize_user(room_name=classroom, new_embedding=user_embedding)
+                is_auth, user_id, _ = ad.authorize_user(room_name=classroom, new_embedding=user_embedding)
+                name = None
                 if is_auth:
                     border_color = "green"
                     st.success("Authentication successful. Access granted!")
                     authentication_done = True
+                    name = user_id
                 else:
                     border_color = "red"
                     failure_count += 1
@@ -146,7 +148,7 @@ def authenticate():
                         camera.release()
                         st.error("Camera stopped.")
                         break
-            img_w_bbox = screen_img.visualize(return_image=True, border_color= border_color)
+            img_w_bbox = screen_img.visualize(return_image=True, border_color= border_color, text=name)
             FRAME_WINDOW.image(img_w_bbox)
             
             if screen_img.bbox is None and authentication_done:
