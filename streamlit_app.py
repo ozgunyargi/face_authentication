@@ -132,9 +132,9 @@ def authenticate():
                 face_img = model.detect(img)
                 user_embedding = extract_embeddings(face_img)
             
+            name = None
             if user_embedding is not None and not authentication_done:
                 is_auth, user_id, _ = ad.authorize_user(room_name=classroom, new_embedding=user_embedding)
-                name = None
                 if is_auth:
                     border_color = "green"
                     st.success("Authentication successful. Access granted!")
