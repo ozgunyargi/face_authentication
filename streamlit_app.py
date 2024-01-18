@@ -111,6 +111,7 @@ def authenticate():
     failure_count = 0
     authentication_done = False
     camera_opened = False
+    name = None
 
     while run:
         if not camera_opened and run:
@@ -132,7 +133,6 @@ def authenticate():
                 face_img = model.detect(img)
                 user_embedding = extract_embeddings(face_img)
             
-            name = None
             if user_embedding is not None and not authentication_done:
                 is_auth, user_id, _ = ad.authorize_user(room_name=classroom, new_embedding=user_embedding)
                 if is_auth:
